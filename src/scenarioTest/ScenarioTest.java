@@ -1,10 +1,12 @@
 package scenarioTest;
 
+import personnages.Gaulois;
 import produit.Poisson;
 import produit.Produit;
 import produit.Sanglier;
 import villagegaulois.Etal;
 import villagegaulois.IEtal;
+import villagegaulois.IVillage;
 
 public class ScenarioTest {
 
@@ -35,11 +37,46 @@ public class ScenarioTest {
 	}
 
 	public static void main(String[] args) {
-		IEtal<Sanglier>[] marche = new IEtal[3];
-		IEtal<Sanglier>[] etalSanglier = new IEtal[10];
-//		IEtal<Poisson> etalPoisson = new Etal<>();
-//		marche[0] = etalSanglier;
-//		marche[1] = etalPoisson;
+		Gaulois ordralfabetix = new Gaulois("Ordralfabétix",9);
+		Gaulois obelix = new Gaulois("Obélix",20);
+		Gaulois asterix = new Gaulois("Asterix", 6);
+		
+		Sanglier sanglier1 = new Sanglier(2000, obelix);
+		Sanglier sanglier2 = new Sanglier(1500, obelix);
+		Sanglier sanglier3 = new Sanglier(1000, asterix);
+		Sanglier sanglier4 = new Sanglier(500, asterix);
+		Sanglier[] sangliersObelix = {sanglier1, sanglier2};
+		
+		Sanglier[] sangliersAsterix = {sanglier3, sanglier4};
+		Poisson poisson1 = new Poisson("lundi");
+		Poisson[] poissons = {poisson1};
+		
+		IEtal[] marche = new IEtal[3];
+		Etal<Sanglier> sanglierEtal1 = new Etal<Sanglier>();
+		Etal<Sanglier> sanglierEtal2 = new Etal<Sanglier>();
+		Etal<Poisson> poissonEtal1 = new Etal<Poisson>();
+		
+		marche[0] = sanglierEtal1;
+		marche[1] = sanglierEtal2;
+		marche[2] = poissonEtal1;
+		
+		sanglierEtal1.installerVendeur(asterix, sangliersAsterix, 10);
+		sanglierEtal2.installerVendeur(obelix, sangliersObelix, 8);
+		poissonEtal1.installerVendeur(ordralfabetix, poissons, 7);
+		System.out.println(marche[0].etatEtal());
+		System.out.println(marche[1].etatEtal());
+		System.out.println(marche[2].etatEtal());
+		
+		marche[0].acheterProduit(2);
+		marche[1].acheterProduit(1);
+		
+		System.out.println(marche[0].etatEtal());
+		System.out.println(marche[1].etatEtal());
+		System.out.println(marche[2].etatEtal());
+//		
+//		marche[0].etatEtal();
+//		marche[1].etatEtal();
+//		marche[2].etatEtal();
 	}
 
 }
