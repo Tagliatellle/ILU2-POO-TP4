@@ -18,7 +18,7 @@ public class Sanglier extends Produit {
 	}
 	
 	public int calculerPrix(int prix) {
-		return prix*this.poid;
+		return prix*this.poid/1000;
 	}
 
 }
