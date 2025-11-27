@@ -2,6 +2,7 @@ package villagegaulois;
 
 import personnages.Gaulois;
 import produit.IProduit;
+import produit.Produit;
 
 public class Etal<P extends IProduit> implements IEtal {
 	private Gaulois vendeur;
@@ -30,6 +31,10 @@ public class Etal<P extends IProduit> implements IEtal {
 			}
 		}
 		return quantiteAVendre;
+	}
+
+	public int getProduitsPrix(int quantite) {
+		return this.produits[0].calculerPrix(quantite);
 	}
 
 	@Override
